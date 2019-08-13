@@ -1,49 +1,31 @@
 <template>
-  <div>
       <div class="contenido contendido_administrador">
         <!-- titulo -->
         <div class="container">
             <div class="titulo custom-title-dashboard">
                 <h1>Administrador Usuarios del sorteo</h1>
-                <span @click="quitDashboard()">Salir</span>
+                <span class="btn btn-outline-primary" @click="quitDashboard()">Salir</span>
             </div>
             <div class="buscador">
                 <div class="texto">
                     <label for="buscador"><i class="fas fa-search"></i></label>
-                    <input name="buscador" type="text" placeholder="Nombre o DNI">
+                    <input name="buscador" type="text" placeholder="Nombre o DNI" v-model="search_bar">
                 </div>
                 <div class="boton">
-                    <input type="submit" value="Buscar">
+                    <input @click="searchUser()" type="submit" value="Buscar">
                 </div>
             </div>
             <div class="lista_usuarios">
                 <ul>
-                    <li class="titulos"><p class="usuario">Nombres de Usuarios</p> <p class="dni">DNI Usuarios</p></li>
-
-
-                    <li><p class="usuario">Nombre Usuario</p> <p class="dni">71558906</p> <button>Inhabilitar</button></li>
-                    
-                    <li><p class="usuario">Nombre Usuario</p> <p class="dni">71558906</p> <button>Inhabilitar</button></li>
-
-                    <li><p class="usuario">Nombre Usuario</p> <p class="dni">71558906</p> <button>Inhabilitar</button></li>
-
-                    <li><p class="usuario">Nombre Usuario</p> <p class="dni">71558906</p> <button>Inhabilitar</button></li>
-                    
-
-                    <li><p class="usuario">Nombre Usuario</p> <p class="dni">71558906</p> <button>Inhabilitar</button></li>
-
-                    <li><p class="usuario">Nombre Usuario</p> <p class="dni">71558906</p> <button>Inhabilitar</button></li>
-
-                    <li><p class="usuario">Nombre Usuario</p> <p class="dni">71558906</p> <button>Inhabilitar</button></li>
-
-                    <li><p class="usuario">Nombre Usuario</p> <p class="dni">71558906</p> <button>Inhabilitar</button></li>
-
-                    <li><p class="usuario">Nombre Usuario</p> <p class="dni">71558906</p> <button>Inhabilitar</button></li>
-
-                    <li><p class="usuario">Nombre Usuario</p> <p class="dni">71558906</p> <button>Inhabilitar</button></li>
-
-                    <li><p class="usuario">Nombre Usuario</p> <p class="dni">71558906</p> <button>Inhabilitar</button></li>
-    
+                    <li class="titulos">
+                        <p class="usuario">Nombres de Usuarios</p>
+                        <p class="dni">DNI Usuarios</p>
+                    </li>
+                    <li v-for="(item, i) in listUsers" :key="i">
+                        <p class="usuario"> {{item.user}}</p>
+                        <p class="dni"> {{item.dni}}</p>
+                        <button @click="disableUser(item)">{{item.status ? 'Inhabilitar' : 'Habilitar'}}</button>
+                    </li>
                 </ul>
                 <div class="botones">
                     <div class="vaciar_lista">
@@ -77,26 +59,40 @@
             </div>
         </div>
     </div>
-    <footer class="footer">
-        Copyright © Derechos reservados <strong>Pacífico Seguros.</strong>Desarrollado por <strong><a href="https://creatosdesign.com">CREATOS DESIGN</a></strong> 
-    </footer>
-  </div>
 </template>
 
 <script>
 export default {
+    layout:'admin',
+    middleware: 'loginAuth',
     data() {
         return {
             activeCookie: null,
+            search_bar: '',
+            listUsers: [
+                { user: 'Alexander', dni: '47228997', status: true },
+                { user: 'Diana', dni: '47228993', status: true },
+                { user: 'Mario', dni: '47228992', status: true },
+                { user: 'Jinmy', dni: '47228994', status: true }
+            ]
         }
     },
-    middleware: 'loginAuth',
+    
     methods: {
         quitDashboard() {
             let vm = this
             // Salimos del sistema y borramos las cookie
             vm.$cookies.removeAll()
             vm.$router.push({path: '/admin/'})
+        },
+        disableUser(item) {
+            // axios here
+
+        },
+        searchUser() {
+            let vm = this
+            console.log(vm.search_bar)
+
         }
     }
 }
@@ -113,7 +109,32 @@ export default {
         padding: 5px 9px;
         border-radius: 4px;
         cursor: pointer;
+        color: #FFF;
     }
+}
+.wrapper-navbar-custom{
+    justify-content: end;
+    background: radial-gradient(ellipse at center, #0472a8 0%, #002e52 104%);
+    color: #FFF;
+    a{
+        padding: 5px 10px;
+        color: #FFF;
+    }
+}
+.lista_usuarios ul{
+    min-height: auto;
+    .titulos {
+        .usuario{
+            width: 45%;
+        }
+        .dni{
+            width: 55%;
+        }
+    }
+
+}
+.contendido_administrador{
+    justify-content: start;
 }
 
 </style>

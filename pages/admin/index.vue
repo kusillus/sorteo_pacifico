@@ -8,7 +8,6 @@
                         <label for="username"><i class="fas fa-user"></i></label>
                         <input type="text" name="username" v-model="payload.email" placeholder="Usuario">
                     </div>
-
                     <div class="texto">
                         <label for="dni"><i class="fas fa-lock"></i></label>
                         <input type="password" name="dni" v-model="payload.password" placeholder="Contraseña">

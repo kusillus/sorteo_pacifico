@@ -31,6 +31,20 @@
 				</div>
 			</div>
 		</div>
+		<div class="contenido fondo_azul">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <h2>Buscar Ganadores</h2>
+                    <p>Al presionar el botón veremos los ganadores primeros ganadores del sorteo.</p>
+                </div>
+                <!-- Button trigger modal -->
+                <button type="button" class="boton_sorteo_disabled" >
+                    ¡Comenzar Sorteo!
+                </button>
+            </div>
+        </div>
+    </div>
 
 		<footer class="footer">
 			Copyright © Derechos reservados <strong>Pacífico Seguros.</strong>Desarrollado por <strong><a href="https://creatosdesign.com">CREATOS DESIGN</a></strong> 
@@ -124,5 +138,18 @@ export default {
 </script>
 
 <style>
+.boton_sorteo_disabled {
+	text-align: center;
+	padding: 10px 20px;
+	border-radius: 10px;
+	border: none;
+	background: #fff;
+	font-size: 22px;
+	font-family: "FocoBold_0";
+	color: #002e52;
+	text-decoration: none;
+	transition: all .5s;
+	opacity: 0.4;
+}
 
 </style>

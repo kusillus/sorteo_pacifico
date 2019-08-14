@@ -4,6 +4,9 @@ export default {
   /*
   ** Headers of the page
   */
+  router: {
+    base: '/demos/pacifico_sorteo/'
+  },
   head: {
     title: 'Sorteo',
     meta: [

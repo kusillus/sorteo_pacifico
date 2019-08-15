@@ -32,19 +32,19 @@
 			</div>
 		</div>
 		<div class="contenido fondo_azul">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 text-center">
-                    <h2>Buscar Ganadores</h2>
-                    <p>Al presionar el botón veremos los ganadores primeros ganadores del sorteo.</p>
-                </div>
-                <!-- Button trigger modal -->
-                <button type="button" class="boton_sorteo_disabled" >
-                    ¡Comenzar Sorteo!
-                </button>
-            </div>
-        </div>
-    </div>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 text-center">
+						<h2>Buscar Ganadores</h2>
+						<p>Al presionar el botón veremos los ganadores primeros ganadores del sorteo.</p>
+					</div>
+					<!-- Button trigger modal -->
+					<button type="button" class="boton_sorteo_disabled" >
+						¡Comenzar Sorteo!
+					</button>
+				</div>
+			</div>
+		</div>
 
 		<footer class="footer">
 			Copyright © Derechos reservados <strong>Pacífico Seguros.</strong>Desarrollado por <strong><a href="https://creatosdesign.com">CREATOS DESIGN</a></strong> 
@@ -53,85 +53,87 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
+import { mxs_data, mxs_methods } from '@/plugins/mixins/index.js'
 
 export default {
-	data() {
-		return {
-			show_modal: null,
-			payload: {
-				full_name: '',
-				dni_number: ''		
-			},
-			winner_info: {
-				full_name: '',
-				dni_number: '',
-				position: 0
-			}
-		}
-	},
-	methods: {
-		send_data(value) {
-			let vm = this
+	mixins: [mxs_data, mxs_methods],
+	// data() {
+	// 	return {
+	// 		show_modal: null,
+	// 		payload: {
+	// 			full_name: '',
+	// 			dni_number: ''		
+	// 		},
+	// 		winner_info: {
+	// 			full_name: '',
+	// 			dni_number: '',
+	// 			position: 0
+	// 		}
+	// 	}
+	// },
+	// methods: {
+	// 	send_data(value) {
+	// 		let vm = this
 
-			if(!vm.eval_payload(value)) {
-				Swal.fire({
-					type: 'warning',
-					title: 'Oops...',
-					html: 'Llena correctamente la información para continuar.',
-				})
-			} else {
-				vm.resetPayload()
-				Swal.fire({
-					type: 'success',
-					title: 'Listo!',
-					html: 'Ahora estas participando, mucha suerte!',
-				})
+	// 		if(!vm.eval_payload(value)) {
+	// 			Swal.fire({
+	// 				type: 'warning',
+	// 				title: 'Oops...',
+	// 				html: 'Llena correctamente la información para continuar.',
+	// 			})
+	// 		} else {
+	// 			vm.resetPayload()
+	// 			Swal.fire({
+	// 				type: 'success',
+	// 				title: 'Listo!',
+	// 				html: 'Ahora estas participando, mucha suerte!',
+	// 			})
 
-				// Swal.fire({
-				// 	type: 'error',
-				// 	title: 'Oops...',
-				// 	html: 'Ocurrio un problema con tu registro, intenta nuevamente.',
-				// })
-			}
-		},
+	// 			// Swal.fire({
+	// 			// 	type: 'error',
+	// 			// 	title: 'Oops...',
+	// 			// 	html: 'Ocurrio un problema con tu registro, intenta nuevamente.',
+	// 			// })
+	// 		}
+	// 	},
 
-		resetPayload() {
-			let vm = this
-			vm.payload.full_name = ''
-			vm.payload.dni_number = ''
+	// 	resetPayload() {
+	// 		let vm = this
+	// 		vm.payload.full_name = ''
+	// 		vm.payload.dni_number = ''
 
-			vm.winner_info.full_name = ''
-			vm.winner_info.dni_number = ''
-			vm.winner_info.position = 0
-		},
+	// 		vm.winner_info.full_name = ''
+	// 		vm.winner_info.dni_number = ''
+	// 		vm.winner_info.position = 0
+	// 	},
 		
-		eval_payload(value) {
-			let valid = false,
-				is_number = Number(value.dni_number)
+	// 	eval_payload(value) {
+	// 		let valid = false,
+	// 			is_number = Number(value.dni_number)
 
-			valid = !isNaN(is_number)
-			valid = value.full_name !== null && value.dni_number.length === 8
+	// 		valid = !isNaN(is_number)
+	// 		valid = value.full_name !== null && value.dni_number.length === 8
 
-			return valid	
-		},
+	// 		return valid	
+	// 	},
 
-		// getWinner(position) {
-		// 	let vm = this
-		// 	console.log('position', position)
-		// 	console.log('position > 1', position > 1)
-		// 	setTimeout(x => {
-		// 		vm.winner_info.full_name = position > 1 ? 'Mario Camones' : 'Alexander Guevara'
-		// 		vm.winner_info.dni_number = position > 1 ? 47228997 : 67552443
-		// 		vm.winner_info.position = position
-		// 		vm.show_modal = 'show'
-		// 	}, 1000)
-		// },
-		// closeModal() {
-		// 	let vm = this
-		// 	vm.resetPayload()
-		// }
-	},
+	// 	// getWinner(position) {
+	// 	// 	let vm = this
+	// 	// 	console.log('position', position)
+	// 	// 	console.log('position > 1', position > 1)
+	// 	// 	setTimeout(x => {
+	// 	// 		vm.winner_info.full_name = position > 1 ? 'Mario Camones' : 'Alexander Guevara'
+	// 	// 		vm.winner_info.dni_number = position > 1 ? 47228997 : 67552443
+	// 	// 		vm.winner_info.position = position
+	// 	// 		vm.show_modal = 'show'
+	// 	// 	}, 1000)
+	// 	// },
+	// 	// closeModal() {
+	// 	// 	let vm = this
+	// 	// 	vm.resetPayload()
+	// 	// }
+	// },
 	components: {
 	}
 }

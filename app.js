@@ -11,7 +11,7 @@ app.use(morgan('short'))
 const pool = mysql.createPool({
   host: '127.0.0.1',
   user: 'root',
-  password: "123456",
+  password: "123456789", // alexander
   database: 'sorteo',
   waitForConnections: true,
   connectionLimit: 10,
@@ -84,6 +84,6 @@ app.put("/change_status", async (req,res) => {
 });
 
 
-app.listen(3003,()=>{
+app.listen(3000,()=>{
     console.log("Seerver us up and listening on 3003...");
 });

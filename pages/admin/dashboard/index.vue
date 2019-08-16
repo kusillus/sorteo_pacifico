@@ -22,9 +22,9 @@
                         <p class="dni">DNI Usuarios</p>
                     </li>
                     <li v-for="(item, i) in listUsers" :key="i">
-                        <p class="usuario"> {{item.user}}</p>
-                        <p class="dni"> {{item.dni}}</p>
-                        <button @click="disableUser(item)">{{item.status ? 'Inhabilitar' : 'Habilitar'}}</button>
+                        <p class="usuario"> {{item.fullName_users}}</p>
+                        <p class="dni"> {{item.dni_users}}</p>
+                        <button @click="changeUser(item)">{{item.status ? 'Inhabilitar' : 'Habilitar'}}</button>
                     </li>
                 </ul>
                 <div class="botones">
@@ -62,6 +62,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import Swal     from 'sweetalert2'
 export default {
     layout:'admin',
     middleware: 'loginAuth',
@@ -70,23 +72,55 @@ export default {
             activeCookie: null,
             search_bar: '',
             listUsers: [
-                { user: 'Alexander', dni: '47228997', status: true },
-                { user: 'Diana', dni: '47228993', status: true },
-                { user: 'Mario', dni: '47228992', status: true },
-                { user: 'Jinmy', dni: '47228994', status: true }
+                // { id_users: '', fullName_users: 'Alexander', dni_users: '47228997', status: true },
             ]
         }
     },
+    mounted() {
+        this.getAllUsers()
+    },
     
     methods: {
+        getAllUsers() {
+            let vm = this
+            axios({
+                method: 'GET',
+                url: 'http://localhost:3003/all_users',
+            })
+            .then( response => {
+                console.log('response', response)
+                let res = response.data
+                vm.listUsers = res.data
+            })
+        },
+
         quitDashboard() {
             let vm = this
             // Salimos del sistema y borramos las cookie
             vm.$cookies.removeAll()
             vm.$router.push({path: '/admin/'})
         },
-        disableUser(item) {
-            // axios here
+        changeUser(item) {
+            let vm = this
+            console.log('here!'+item)
+            axios({
+                method: 'PUT',
+                url: 'http://localhost:3003/change_status',
+                data: {
+                    dni: item.dni_users,
+                    status: !item.status,
+                }
+            })
+            .then( response => {
+                console.log('response', response)
+                let res = response.data
+                item.status = !item.status
+                Swal.fire({
+					type: 'success',
+					title: 'Listo!',
+					html: res.message
+				})
+            })
 
         },
         searchUser() {

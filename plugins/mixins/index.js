@@ -39,14 +39,16 @@ export const mxs_methods = {
                         full_name: value.full_name
                     }
                 }).then(response => {
-                    console.log('response',response)
+                    let res = response.data
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Listo!',
+                        html: res.message,
+                    })
+                    vm.resetPayload()
                 })
-                // vm.resetPayload()
-                Swal.fire({
-                    type: 'success',
-                    title: 'Listo!',
-                    html: 'Ahora estas participando, mucha suerte!',
-                })
+                
+                
     
                 // Swal.fire({
                 // 	type: 'error',

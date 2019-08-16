@@ -74,7 +74,7 @@ async function changeStatus(dni,status) {
 }
 
 async function selectWin(){
-    const result = await pool.query('SELECT * FROM users ORDER BY RAND() LIMIT 1 ');
+    const result = await pool.query('SELECT * FROM users WHERE status = 1 ORDER BY RAND() LIMIT 1 ');
     return result[0][0];
 } 
 

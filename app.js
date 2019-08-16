@@ -73,6 +73,17 @@ async function changeStatus(dni,status) {
     return result[0][0];
 }
 
+async function selectWin(){
+    const result = await pool.query('SELECT * FROM users ORDER BY RAND() LIMIT 1 ');
+    return result[0][0];
+} 
+
+async function searchUser(name){
+    let query = `SELECT * FROM sorteo.users WHERE fullName_users LIKE '%${name}%'`
+    const result = await pool.query(query);
+    return result[0];  
+}
+
 app.get("/users/:dni", async (req,res) => {
     const dni = req.params.dni;
     const user = await getUserForDNI(dni);
@@ -115,6 +126,17 @@ app.put("/change_status", async (req,res) => {
     }
     res.json({"message":"Se modificó correctamente","status":true,"data":data})
 });
+
+app.get("/selectWin", async(req,res) => {
+    const win = await selectWin();
+    res.json({"message":"Ok","status":true,"data":win})
+})
+
+app.get("/search/:name", async(req,res) => {
+    const name = req.params.name;
+    const user = await searchUser(name);
+    res.json({"message":"Ok","status":true,"data":user})
+})
 
 const port = process.env.PORT || 3003;
 app.listen(port,()=>{

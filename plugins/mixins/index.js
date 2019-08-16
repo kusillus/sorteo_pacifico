@@ -23,7 +23,6 @@ export const mxs_methods = {
 
         send_data(value) {
             let vm = this
-    
             if(!vm.eval_payload(value)) {
                 Swal.fire({
                     type: 'warning',
@@ -32,7 +31,9 @@ export const mxs_methods = {
                 })
             } else {
                 axios({
-                    url: 'users_create',
+                    url: 'http://localhost:3003/users_create',
+                    // url: 'users_create',
+                    method: 'post',
                     data: {
                         dni: value.dni_number,
                         full_name: value.full_name
@@ -40,7 +41,7 @@ export const mxs_methods = {
                 }).then(response => {
                     console.log('response',response)
                 })
-                vm.resetPayload()
+                // vm.resetPayload()
                 Swal.fire({
                     type: 'success',
                     title: 'Listo!',

@@ -29,12 +29,22 @@ app.use(function (req, res, next) {
     next();
 });
 
+let host = "127.0.0.1"
+let user = "root"
+let password = "123456"
+let database = "sorteo"
+if ( process.env.NODE_ENV == 'prod'){
+    host = "mysql1005.mochahost.com";
+    user = "creatos_sorteo";
+    database = "creatos_sorteo";
+    password = "sorteo_pacifico"
+}
 
 const pool = mysql.createPool({
-  host: '127.0.0.1',
-  user: 'root',
-  password: "123456", // alexander
-  database: 'sorteo',
+  host: host,
+  user: user,
+  password: password,
+  database: database,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
@@ -106,7 +116,7 @@ app.put("/change_status", async (req,res) => {
     res.json({"message":"Se modificó correctamente","status":true,"data":data})
 });
 
-
-app.listen(3003,()=>{
-    console.log("Seerver us up and listening on 3003...");
+const port = process.env.PORT || 3003;
+app.listen(port,()=>{
+    console.log(`Seerver us up and listening on ${port}...`);
 });

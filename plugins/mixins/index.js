@@ -31,7 +31,7 @@ export const mxs_methods = {
                 })
             } else {
                 axios({
-                    url: 'http://localhost:3003/users_create',
+                    url: process.env.service_url + 'users_create',
                     // url: 'users_create',
                     method: 'post',
                     data: {
@@ -78,16 +78,18 @@ export const mxs_methods = {
             vm.winner_info.position = 0
         },
         
-        getWinner(position) {
+        getWinner() {
             let vm = this
-            console.log('position', position)
-            console.log('position > 1', position > 1)
-            setTimeout(x => {
-                vm.winner_info.full_name = position > 1 ? 'Mario Camones' : 'Alexander Guevara'
-                vm.winner_info.dni_number = position > 1 ? 47228997 : 67552443
-                vm.winner_info.position = position
-                vm.show_modal = 'show'
-            }, 1000)
+            // selectWin
+
+            axios({
+                url: process.env.service_url + 'selectWin',
+                method: 'get',
+            }).then(response => {
+                let res = response.data.data
+                vm.winner_info.full_name = res.fullName_users
+                vm.winner_info.dni_number = res.dni_users
+            })
         },
     
         closeModal() {

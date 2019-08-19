@@ -39,7 +39,7 @@
                     <p>Al presionar el botón veremos los ganadores primeros ganadores del sorteo.</p>
                 </div>
                 <!-- Button trigger modal -->
-                <button type="button" @click="getWinner(0)" class="boton_sorteo" data-toggle="modal" data-target="#exampleModalCenter">
+                <button type="button" @click="getWinner()" class="boton_sorteo" data-toggle="modal" data-target="#exampleModalCenter">
                     ¡Comenzar Sorteo!
                 </button>
 
@@ -63,7 +63,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="boton_cerrar" data-dismiss="modal" @click="closeModal()">Cerrar</button>
-                                <button type="button" class="boton" @click="getWinner(winner_info.position+1)">Siguiente ganador</button>
+                                <button type="button" class="boton" @click="getWinner()">Siguiente ganador</button>
                             </div>
                         </div>
                     </div>

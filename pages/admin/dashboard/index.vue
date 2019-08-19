@@ -9,10 +9,10 @@
             <div class="buscador">
                 <div class="texto">
                     <label for="buscador"><i class="fas fa-search"></i></label>
-                    <input name="buscador" type="text" placeholder="Nombre o DNI" v-model="search_bar">
+                    <input name="buscador" type="text" placeholder="Nombre" v-model="search_bar">
                 </div>
                 <div class="boton">
-                    <input @click="searchUser()" type="submit" value="Buscar">
+                    <input @click="searchUser(search_bar)" type="submit" value="Buscar">
                 </div>
             </div>
             <div class="lista_usuarios">
@@ -85,7 +85,7 @@ export default {
             let vm = this
             axios({
                 method: 'GET',
-                url: 'http://localhost:3003/all_users',
+                url: process.env.service_url +'all_users',
             })
             .then( response => {
                 console.log('response', response)
@@ -105,7 +105,7 @@ export default {
             console.log('here!'+item)
             axios({
                 method: 'PUT',
-                url: 'http://localhost:3003/change_status',
+                url: process.env.service_url +'change_status',
                 data: {
                     dni: item.dni_users,
                     status: !item.status,
@@ -123,9 +123,25 @@ export default {
             })
 
         },
-        searchUser() {
+        searchUser(search_bar) {
             let vm = this
-            console.log(vm.search_bar)
+            if(search_bar.length  === 0) {
+                vm.getAllUsers()
+                // Swal.fire({
+                //     type: 'warning',
+                //     title: 'Ops!',
+                //     html: 'Debes ingresar un nombre para poder realizar la busqueda.'
+                // })
+            } else {
+                axios({
+                    method: 'get',
+                    url: process.env.service_url +'search/' + vm.search_bar,
+                })
+                .then( response => {
+                    let res = response.data
+                    vm.listUsers = res.data
+                })
+            }
 
         }
     }

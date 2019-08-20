@@ -23,7 +23,7 @@
                 <form action="" v-else>
                     <div class="texto">
                         <label for="email"><i class="fas fa-envelope"></i></label>
-                        <input type="email" name="email" v-model="payload.email" placeholder="Usuario">
+                        <input type="number" name="email" v-model="payload.email" placeholder="Usuario">
                     </div>
                     <div class="boton align-btn">
                         <input type="submit" @click.prevent="login_user(payload)" value="Recuperar">
@@ -58,8 +58,22 @@ export default {
             let vm = this
             if(vm.eval_payload(payload)) {
                 // TODO: Servicio para el login
-                axios.get('https://pokeapi.co/api/v2/pokemon/ditto/')
-                .then(response => {
+                axios({
+                    url: process.env.service_url + 'auth',
+                    // url: 'users_create',
+                    method: 'post',
+                    data: {
+                        dni: payload.email,
+                        password: payload.password
+                    }
+                }).then(response => {
+                    let res = response.data
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Listo!',
+                        html: res.message,
+                    })
+
                     let token = 'Alexander-token'
                     // TODO: Seteamos el token que nos responde el servicio.
                     vm.$cookies.set('user-token', token, {
@@ -69,6 +83,8 @@ export default {
                     vm.$store.commit('SET_USER',token)
                     // TODO: Redireccionamos al dashboard
                     vm.$router.push('/admin/dashboard')
+
+                    vm.resetPayload()
                 })
             } else {
                 Swal.fire({
@@ -86,8 +102,8 @@ export default {
 
         resetPayload() {
 			let vm = this
-			vm.payload.full_name = ''
-			vm.payload.dni_number = ''
+			vm.payload.email = ''
+			vm.payload.password = ''
 		},
     }
 

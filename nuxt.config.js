@@ -5,10 +5,10 @@ export default {
   ** Headers of the page
   */
   env: {
-    service_url: process.env.NODE_ENV === 'production' ? 'http://creatosdesign.com/sorteo/' : 'http://localhost:3003/sorteo/'
+    service_url: process.env.NODE_ENV === 'production' ? 'http://premiospacifico.com/api/' : 'http://localhost:3003/api/'
   },
   router: {
-    base: process.env.NODE_ENV === 'production' ? '/demos/pacifico_sorteo/' : ''
+    base: process.env.NODE_ENV === 'production' ? '' : ''
   },
   head: {
     title: 'Sorteo',

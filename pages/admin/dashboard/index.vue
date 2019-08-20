@@ -88,7 +88,6 @@ export default {
                 url: process.env.service_url +'all_users',
             })
             .then( response => {
-                console.log('response', response)
                 let res = response.data
                 vm.listUsers = res.data
             })
@@ -102,7 +101,6 @@ export default {
         },
         changeUser(item) {
             let vm = this
-            console.log('here!'+item)
             axios({
                 method: 'PUT',
                 url: process.env.service_url +'change_status',
@@ -112,7 +110,6 @@ export default {
                 }
             })
             .then( response => {
-                console.log('response', response)
                 let res = response.data
                 item.status = !item.status
                 Swal.fire({

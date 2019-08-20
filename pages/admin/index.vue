@@ -81,7 +81,6 @@ export default {
 
         eval_payload(value) {
             let valid = false
-            console.log('eval payload', value.email.length !== 0 && value.password.length !== 0)
 			return value.email.length !== 0 && value.password.length !== 0
 		},
 

@@ -104,7 +104,7 @@ export default {
                     method: 'post'
                 }).then(response => {
                     vm.$cookies.removeAll()
-                    window.location.href = '/login'
+                    window.location.href = '/admin'
                     // vm.$router.push({path: '/login'})
                 })
         },

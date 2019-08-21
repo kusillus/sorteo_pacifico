@@ -68,23 +68,32 @@ export default {
                     }
                 }).then(response => {
                     let res = response.data
-                    Swal.fire({
-                        type: 'success',
-                        title: 'Listo!',
-                        html: res.message,
-                    })
+                    if(res.status) {
+                        // Swal.fire({
+                        //     type: 'success',
+                        //     title: 'Listo!',
+                        //     html: res.message,
+                        // })
+                        let token = 'Alexander-token'
+                        // TODO: Seteamos el token que nos responde el servicio.
+                        vm.$cookies.set('user-token', token, {
+                            path: '/',
+                            maxAge: 60 * 60 * 24 * 7
+                        })
+                        vm.$store.commit('SET_USER',token)
+                        // TODO: Redireccionamos al dashboard
+                        window.location.href = '/admin/dashboard'
+                        // vm.$router.push('/admin/dashboard')
 
-                    let token = 'Alexander-token'
-                    // TODO: Seteamos el token que nos responde el servicio.
-                    vm.$cookies.set('user-token', token, {
-                        path: '/',
-                        maxAge: 60 * 60 * 24 * 7
-                    })
-                    vm.$store.commit('SET_USER',token)
-                    // TODO: Redireccionamos al dashboard
-                    vm.$router.push('/admin/dashboard')
+                        vm.resetPayload()
+                    } else {
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Ops!',
+                            html: res.message,
+                        })
+                    }
 
-                    vm.resetPayload()
                 })
             } else {
                 Swal.fire({

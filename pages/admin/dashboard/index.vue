@@ -19,11 +19,14 @@
                 <ul>
                     <li class="titulos">
                         <p class="usuario">Nombres de Usuarios</p>
-                        <p class="dni">DNI Usuarios</p>
+                        <p class="dni text-center">DNI Usuarios</p>
+                        <p class="exist text-center">Existe</p>
+                        <p class="acctions text-center">Acciones</p>
                     </li>
                     <li v-for="(item, i) in listUsers" :key="i">
                         <p class="usuario"> {{item.fullName_users}}</p>
-                        <p class="dni"> {{item.dni_users}}</p>
+                        <p class="dni text-center"> {{item.dni_users}}</p>
+                        <p class="exist text-center">{{item.exist === 1 ? 'Si': 'No'}}</p>
                         <button @click="changeUser(item)">{{item.status ? 'Inhabilitar' : 'Habilitar'}}</button>
                     </li>
                 </ul>
@@ -96,8 +99,14 @@ export default {
         quitDashboard() {
             let vm = this
             // Salimos del sistema y borramos las cookie
-            vm.$cookies.removeAll()
-            vm.$router.push({path: '/admin/'})
+            axios({
+                    url: process.env.service_url + 'logout',
+                    method: 'post'
+                }).then(response => {
+                    vm.$cookies.removeAll()
+                    window.location.href = '/login'
+                    // vm.$router.push({path: '/login'})
+                })
         },
         changeUser(item) {
             let vm = this
@@ -175,7 +184,29 @@ export default {
             width: 45%;
         }
         .dni{
-            width: 55%;
+            width: 30%;
+        }
+        .exist,.acctions{
+            width: 15%;
+            border: 1px solid #fff;
+            margin: 0;
+            padding: 10px 10px;
+            font-size: 15px;
+        }
+        .acctions{
+            width: 10%;
+        }
+    }
+    li {
+        .dni{
+            width: 30%;
+        }
+        .exist{
+            width: 15%;
+            border: 1px solid #fff;
+            margin: 0;
+            padding: 10px 10px;
+            font-size: 15px;
         }
     }
 

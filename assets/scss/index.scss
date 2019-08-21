@@ -543,6 +543,13 @@
 // .swal2-title{
 // 	display: block!important;
 // }
+
+.swal2-title{
+  display: block;
+}
+.swal2-title::after{
+display: none;
+}
 @font-face {
     font-family: 'Foco';
     font-style: normal;

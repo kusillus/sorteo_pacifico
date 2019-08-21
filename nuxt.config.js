@@ -5,8 +5,8 @@ export default {
   ** Headers of the page
   */
   env: {
-    // service_url: process.env.NODE_ENV === 'production' ? 'http://premiospacifico.com/api/' : 'http://localhost:3003/api/'
-    service_url: 'http://premiospacifico.com/api/'
+    service_url: process.env.NODE_ENV === 'production' ? 'http://premiospacifico.com/api/' : 'http://localhost:3003/api/'
+    // service_url: 'http://premiospacifico.com/api/'
   },
   router: {
     base: process.env.NODE_ENV === 'production' ? '' : ''

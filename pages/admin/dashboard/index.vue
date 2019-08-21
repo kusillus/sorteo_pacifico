@@ -115,7 +115,7 @@ export default {
                 url: process.env.service_url +'change_status',
                 data: {
                     dni: item.dni_users,
-                    status: !item.status,
+                    status: item.status ? 0: 1 ,
                 }
             })
             .then( response => {

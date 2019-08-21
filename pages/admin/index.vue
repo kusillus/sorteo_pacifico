@@ -88,7 +88,7 @@ export default {
                         vm.resetPayload()
                     } else {
                         Swal.fire({
-                            type: 'success',
+                            type: 'error',
                             title: 'Ops!',
                             html: res.message,
                         })

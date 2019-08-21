@@ -6,7 +6,7 @@
                 <form action="" v-if="login_panel">
                     <div class="texto">
                         <label for="username"><i class="fas fa-user"></i></label>
-                        <input type="text" name="username" v-model="payload.email" placeholder="Usuario">
+                        <input type="text" name="username" v-model="payload.email" placeholder="DNI">
                     </div>
                     <div class="texto">
                         <label for="dni"><i class="fas fa-lock"></i></label>

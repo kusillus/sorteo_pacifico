@@ -6,7 +6,7 @@
 				<div class="row">
 					<div class="col-12 text-center contenedor_img">
 						<img :src="require('@/assets/img/2019.svg')">
-						<p>Ingresa tus datos en este formulario y particiaparás en nuestro sorteo del 2019.<br><strong>!Te deseamos suerte!</strong></p>
+						<p>Ingresa tus datos en este formulario y participarás en nuestro sorteo del 2019.<br><strong>!Te deseamos suerte!</strong></p>
 					</div>
 				</div>
 			</div>
@@ -31,20 +31,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="contenido fondo_azul">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-12 text-center">
-						<h2>Buscar Ganadores</h2>
-						<p>Al presionar el botón veremos los ganadores primeros ganadores del sorteo.</p>
-					</div>
-					<!-- Button trigger modal -->
-					<button type="button" class="boton_sorteo_disabled" >
-						¡Comenzar Sorteo!
-					</button>
-				</div>
-			</div>
-		</div>
+		<!--  -->
 
 		<footer class="footer">
 			Copyright © Derechos reservados <strong>Pacífico Seguros.</strong>Desarrollado por <strong><a href="https://creatosdesign.com">CREATOS DESIGN</a></strong> 
@@ -76,6 +63,9 @@ export default {
 	text-decoration: none;
 	transition: all .5s;
 	opacity: 0.4;
+}
+.contenido{
+	height: calc(100vh - 64px);
 }
 
 </style>

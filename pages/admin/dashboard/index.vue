@@ -33,9 +33,9 @@
                 <div class="botones">
                     <div class="vaciar_lista">
                         <!-- Button trigger modal -->
-                        <button type="button" class="boton_sorteo" data-toggle="modal" data-target="#exampleModalCenter">
+                        <!-- <button type="button" class="boton_sorteo" data-toggle="modal" data-target="#exampleModalCenter">
                                 Vaciar Lista
-                        </button>
+                        </button> -->
     
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

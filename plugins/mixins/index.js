@@ -39,13 +39,14 @@ export const mxs_methods = {
                         full_name: value.full_name
                     }
                 }).then(response => {
-                    let res = response.data
-                    Swal.fire({
-                        type: 'success',
-                        title: 'Listo!',
-                        html: res.message,
-                    })
+                    // let res = response.data
+                    // Swal.fire({
+                    //     type: 'success',
+                    //     title: 'Listo!',
+                    //     html: res.message,
+                    // })
                     vm.resetPayload()
+                    vm.$router.push('/suerte')
                 })
                 
                 

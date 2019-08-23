@@ -1,36 +1,5 @@
 <template>
 <div>
-    <div class="contenido">
-			<!-- titulo -->
-        <div class="container contenedor_titulo">
-            <div class="row">
-                <div class="col-12 text-center contenedor_img">
-                    <img :src="require('@/assets/img/2019.svg')">
-                    <p>Ingresa tus datos en este formulario y particiaparás en nuestro sorteo del 2019.<br><strong>!Te deseamos suerte!</strong></p>
-                </div>
-            </div>
-        </div>
-        <!-- formulario -->
-        <div class="container">
-            <div class="formulario">
-                <form action="">
-                    <div class="texto">
-                        <label for="nombre"><i class="fas fa-user"></i></label>
-                        <input type="text" name="nombre" v-model="payload.full_name" placeholder="Nombre Completo">
-                    </div>
-
-                    <div class="texto">
-                        <label for="dni"><i class="fas fa-id-card"></i></label>
-                        <input type="number" name="dni" v-model="payload.dni_number" placeholder="DNI">
-                    </div>
-
-                    <div class="boton">
-                        <input type="submit" @click.prevent="send_data(payload)" value="¡Participar!">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     <div class="contenido fondo_azul">
         <div class="container">
             <div class="row justify-content-center">
@@ -44,7 +13,7 @@
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" :class="show_modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal" :class="show_modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -87,4 +56,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.contenido{
+    min-height: calc(100vh - 114px);
+}
 </style>
